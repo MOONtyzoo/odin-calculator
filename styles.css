@@ -68,7 +68,7 @@ button {
 
     border-style: outset;
     border-width: 3px;
-    border-color: rgb(0, 0, 0);
+    border-color: rgb(128, 128, 128);
 
     border-radius: 5px;
 
@@ -78,18 +78,34 @@ button {
     font-size-adjust: initial;
 }
 
+button:active {
+    border-style:inset
+}
+
 .numpad {
     background-color: rgb(197, 208, 211);
+}
+.numpad:hover {
+    background-color: rgb(166, 188, 194);
 }
 
 .operation {
     background-color: rgb(168, 182, 202);
 }
+.operation:hover {
+    background-color: rgb(128, 150, 180);
+}
 
 .equals {
     background-color:rgb(236, 196, 122);
 }
+.equals:hover {
+    background-color:rgb(201, 157, 77);
+}
 
 .removing {
     background-color: rgb(206, 162, 162);
+}
+.removing:hover {
+    background-color: rgb(177, 115, 115);
 }
