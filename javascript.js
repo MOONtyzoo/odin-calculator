@@ -1,5 +1,5 @@
 let calculator = document.querySelector("#calculator")
-let display = document.querySelector("#display")
+let display = document.querySelector("#display-text")
 
 let displayNumber = ""
 let rememberedNumber =  ""
@@ -61,10 +61,10 @@ function processInput(inputStr) {
             operationInput("/")
             break
         case "del":
-            alert("delete")
+            deleteNum()
             break
         case "c":
-            alert("clear")
+            clearCalculator()
             break
         case "=":
             alert("equals")
@@ -79,10 +79,30 @@ function updateDisplay() {
 }
 
 function numpadInput(numStr) {
-    displayNumber += numStr
+    if (numStr == "-") {
+        if (displayNumber.length == 0) {
+            displayNumber += numStr
+        }
+    } else if (numStr == ".") {
+        if (displayNumber.indexOf(".") == -1) {
+            displayNumber += numStr
+        }
+    } else {
+        displayNumber += numStr
+    }
     updateDisplay()
 }
 
 function operationInput(opStr) {
     alert("Operation " + opStr)
+}
+
+function clearCalculator() {
+    displayNumber = ""
+    updateDisplay()
+}
+
+function deleteNum() {
+    displayNumber = displayNumber.substring(0, displayNumber.length-1)
+    updateDisplay()
 }

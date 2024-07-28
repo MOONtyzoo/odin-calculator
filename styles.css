@@ -39,11 +39,17 @@ h1 {
     border-color: rgb(60, 60, 80);
     border-radius: 10px;
 
-    font-size: 32px;
+    background-color: rgb(128, 160, 126);
+
+    display:flex;
+    justify-content: end;
+    align-items: center;
+}
+
+#display-text {
+    font-size: 60px;
     text-align: end;
     vertical-align: middle;
-
-    background-color: rgb(128, 160, 126);
 }
 
 .gridNode {
