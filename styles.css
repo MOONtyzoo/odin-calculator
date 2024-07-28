@@ -14,9 +14,10 @@ h1 {
 }
 
 #calculator {
-    max-width: 70vw;
-    max-height: 70vh;
+    max-width: 50vw;
+    max-height: 50vh;
     flex-grow: 1;
+    aspect-ratio: 1.1;
 
     background-color: rgb(69, 71, 90);
 
@@ -37,6 +38,10 @@ h1 {
     border-width: 6px;
     border-color: rgb(60, 60, 80);
     border-radius: 10px;
+
+    font-size: 32px;
+    text-align: end;
+    vertical-align: middle;
 
     background-color: rgb(128, 160, 126);
 }
