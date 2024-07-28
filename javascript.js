@@ -3,6 +3,7 @@ let display = document.querySelector("#display-text")
 
 let displayNumber = ""
 let rememberedNumber =  ""
+let currentOperation = ""
 
 calculator.addEventListener("click", (e) => {
     if (e.target.nodeName == "BUTTON") {
@@ -67,7 +68,7 @@ function processInput(inputStr) {
             clearCalculator()
             break
         case "=":
-            alert("equals")
+            performOperation()
             break
         default:
             alert("This input is not defined!")
@@ -94,11 +95,43 @@ function numpadInput(numStr) {
 }
 
 function operationInput(opStr) {
-    alert("Operation " + opStr)
+    if (currentOperation != "") {performOperation()}
+    currentOperation = opStr
+    rememberedNumber = displayNumber
+    displayNumber = ""
+}
+
+function performOperation() {
+    let numA = parseFloat(rememberedNumber)
+    let numB = parseFloat(displayNumber)
+    let answer = 0;
+    switch (currentOperation) {
+        case "+":
+            answer = numA + numB;
+            break;
+        case "-":
+            answer = numA - numB;
+            break;
+        case "x":
+            answer = numA * numB;
+            break;
+        case "/":
+            answer = numA / numB;
+            break;
+        default:
+            answer = 0;
+            break
+    }
+    alert(answer)
+    displayNumber = answer.toString()
+    updateDisplay()
+    currentOperation = ""
 }
 
 function clearCalculator() {
     displayNumber = ""
+    rememberedNumber = ""
+    currentOperation = ""
     updateDisplay()
 }
 
