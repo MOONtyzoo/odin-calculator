@@ -78,10 +78,30 @@ function processInput(inputStr) {
 }
 
 function updateDisplay() {
-    display.textContent = displayNumber
+    const displayCharLimit = 15
+    let textContent = displayNumber
+
+    if (displayNumber.length > displayCharLimit) {
+        // Checking for exponential notation
+        if (displayNumber.indexOf("e") == -1) {
+            textContent = parseInt(textContent).toExponential(displayCharLimit - 10)
+        }
+        if (displayNumber.indexOf("e") != -1) {
+            let mantissa = displayNumber.substring(0, displayNumber.indexOf("e"))
+            let exponent = displayNumber.substring(displayNumber.indexOf("e"), displayNumber.length)
+            mantissa = displayNumber.substring(0, displayCharLimit - exponent.length - 5)
+            textContent = mantissa + exponent
+        }
+
+    }
+
+    displayNumber = textContent
+    display.textContent = textContent
 }
 
 function numpadInput(numStr) {
+    if (displayNumber.indexOf("e") != -1) {return}
+
     if (numStr == "-") {
         if (displayNumber.length == 0) {
             displayNumber += numStr
@@ -129,7 +149,6 @@ function performOperation() {
             answer = 0;
             break
     }
-    //alert(answer)
     displayNumber = answer.toString()
     updateDisplay()
     currentOperation = ""
@@ -145,5 +164,9 @@ function clearCalculator() {
 
 function deleteNum() {
     displayNumber = displayNumber.substring(0, displayNumber.length-1)
+    if (overwriteNextInput == true) {
+        displayNumber = ""
+        overwriteNextInput = false
+    }
     updateDisplay()
 }
