@@ -5,6 +5,8 @@ let displayNumber = ""
 let rememberedNumber =  ""
 let currentOperation = ""
 
+let overwriteNextInput = false
+
 calculator.addEventListener("click", (e) => {
     if (e.target.nodeName == "BUTTON") {
         processInput(e.target.textContent)
@@ -91,6 +93,11 @@ function numpadInput(numStr) {
     } else {
         displayNumber += numStr
     }
+
+    if (overwriteNextInput == true) {
+        displayNumber = numStr
+        overwriteNextInput = false
+    }
     updateDisplay()
 }
 
@@ -122,10 +129,11 @@ function performOperation() {
             answer = 0;
             break
     }
-    alert(answer)
+    //alert(answer)
     displayNumber = answer.toString()
     updateDisplay()
     currentOperation = ""
+    overwriteNextInput = true
 }
 
 function clearCalculator() {
